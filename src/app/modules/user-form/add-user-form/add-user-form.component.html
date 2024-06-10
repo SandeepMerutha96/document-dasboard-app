@@ -1,0 +1,118 @@
+<div class=" userForm">
+    <h1 class="addform">ADD NEW USER FORM</h1>
+</div>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+<div class="row align-items-start userForm">
+    <div class="col-lg-4 ">
+ 
+            <div class="shipping-address ">
+                <div class="row">
+                    <div class="col-12 mb-3 px-4 px-sm-2 position-relative">
+                        <label for="name">Enter Full Name</label>
+                        <input type="text" id=""  required="required" formControlName="name"
+                            class="form-control form-fields" autocomplete="off"
+                            [ngClass]="{ 'is-invalid':formSubmitted && isControlInvalid('name') && markAsTouched('name')  }" />
+                        
+                        <ng-container *ngIf="formSubmitted" [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                            validation: 'required',
+                            message: 'Fullname is required',
+                            control: userForm.controls['name']
+                          }"></ng-container>
+
+                    </div>
+                    <div class="col-12 col-sm-6 mb-3 px-4 px-sm-2 position-relative">
+                        <label for="phoneNumber"><span>+91 </span>Enter Mobile Number</label>
+                        <input type="tel" id="" name="phoneNumber" required="required" formControlName="phoneNumber"
+                            class="form-control form-fields" autocomplete="off"
+                            [ngClass]="{ 'is-invalid':formSubmitted && isControlInvalid('phoneNumber') && markAsTouched('phoneNumber')  }" />
+                  
+                        <ng-container *ngIf="formSubmitted" [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                            validation: 'required',
+                            message: 'Mobile No is required',
+                            control: userForm.controls['phoneNumber']
+                          }"></ng-container>
+                        <ng-container *ngIf="formSubmitted" [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                            validation: 'pattern',
+                            message: 'Mobile No is invalid',
+                            control: userForm.controls['phoneNumber']
+                          }"></ng-container>
+
+                    </div>
+                    <div class="col-12 col-sm-6 mb-3 px-4 px-sm-2 position-relative">
+                        <label for="email">Enter email Address</label>
+                        <input type="text" id="" name="name" required="required" formControlName="email" 
+                        class="form-control form-fields" autocomplete="off"
+                        [ngClass]="{ 'is-invalid':formSubmitted && isControlInvalid('email') && markAsTouched('email')  }"/>
+                     
+                        <ng-container>
+                            <ng-container *ngIf="formSubmitted" [ngTemplateOutlet]="formError"
+                                [ngTemplateOutletContext]="{
+                               validation: 'required',
+                               message: 'Email is required',
+                              control: userForm.controls['email']
+                                }"></ng-container>
+                            <ng-container *ngIf="formSubmitted" [ngTemplateOutlet]="formError"
+                                [ngTemplateOutletContext]="{
+                               validation: 'email',
+                                message: 'Email is invalid',
+                                  control: userForm.controls['email']
+                                  }"></ng-container>
+                            <ng-container *ngIf="formSubmitted" [ngTemplateOutlet]="formError"
+                                [ngTemplateOutletContext]="{
+                                  validation: 'minLength',
+                                   message: 'Email should have at least 3 symbols',
+                                    control: userForm.controls['email']
+                                 }"></ng-container>
+                            <ng-container *ngIf="formSubmitted" [ngTemplateOutlet]="formError"
+                                [ngTemplateOutletContext]="{
+                                validation: 'maxLength',
+                                   message: 'Email should have maximum 360 symbols',
+                                 control: userForm.controls['email']
+                                   }"></ng-container>
+                        </ng-container>
+                    </div>
+                    <div class="col-12 mb-3 px-4 px-sm-2 position-relative">
+                        <label for="name">Address Line</label>
+                        <input type="text" id="" name="address" required="required" formControlName="address" 
+                        class="form-control form-fields" autocomplete="off"
+                        [ngClass]="{ 'is-invalid':formSubmitted && isControlInvalid('address') && markAsTouched('address')  }"/>
+                       
+                        <ng-container *ngIf="formSubmitted" [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                       validation: 'required',
+                       message: 'Address is required',
+                      control: userForm.controls['address']
+                        }"></ng-container>
+                    </div>
+             
+                  
+             
+              
+                </div>
+            </div>
+            <div class=" mb-2">
+                <button class="primary-btn w-100 mt-4" type="submit">
+                    <ng-container *ngIf="!isLoading; else loading;">
+                       SAVE FORM
+                    </ng-container>
+                    <ng-template #loading>
+                        <div class="spinner-border spinner-border-sm spinner-circle-size" role="status">
+                        </div>
+                    </ng-template></button>
+                    <button class="primary-btn w-100 mt-4"  type="button" (click)="backToList()">Cancel</button>
+            </div>
+    </div>
+</div>
+</form>
+
+    <ng-template #formError let-control="control" let-message="message" let-validation="validation">
+        <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+            <div class="fv-plugins-message-container">
+                <div class="fv-error-block">
+                    {{ message }}
+                </div>
+            </div>
+        </ng-container>
+    </ng-template>
+
+

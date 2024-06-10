@@ -1,0 +1,5 @@
+.modal-confirm-size {
+    max-width: 415px;
+    max-height: 252px;
+    z-index: 1000;
+  }

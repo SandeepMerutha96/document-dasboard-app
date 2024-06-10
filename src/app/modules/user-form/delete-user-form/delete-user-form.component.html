@@ -1,0 +1,30 @@
+<div class="modal-dialog modal-dialog-centered text-center  mt-0 mb-0" >
+    <div class="modal-content">
+      <ng-container *ngIf="isLoading">
+        <div class="progress progress-modal">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar"
+            style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </ng-container>
+   <div class="modal-body mt-0 pt-5 pb-5">
+        <div class="pb-8 bi bi-border-all">
+          <svg width="61px" height="52px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Stockholm-icons-/-Code-/-Warning-2" stroke="none" stroke-width="1" fill="white" fill-rule="evenodd">
+                <rect id="bound" x="0" y="0" ></rect>
+                <path d="M11.1669899,4.49941818 L2.82535718,19.5143571 C2.557144,19.9971408 2.7310878,20.6059441 3.21387153,20.8741573 C3.36242953,20.9566895 3.52957021,21 3.69951446,21 L21.2169432,21 C21.7692279,21 22.2169432,20.5522847 22.2169432,20 C22.2169432,19.8159952 22.1661743,19.6355579 22.070225,19.47855 L12.894429,4.4636111 C12.6064401,3.99235656 11.9909517,3.84379039 11.5196972,4.13177928 C11.3723594,4.22181902 11.2508468,4.34847583 11.1669899,4.49941818 Z" id="Path-117" fill="#f8295b" ></path>
+                <rect id="Rectangle-9" fill="white" x="11" y="9" width="2" height="7" rx="1"></rect>
+                <rect id="Rectangle-9-Copy" fill="white" x="11" y="17" width="2" height="2" rx="1"></rect> </g> </svg>
+       </div>
+        <ng-container *ngIf="isLoading">
+          <span>Category Type is deleting...</span>
+        </ng-container>
+        <ng-container *ngIf="!isLoading">
+            <span class="delete-text">Are you sure you want to delete the <br> <span> category ?</span></span>
+          </ng-container>
+          <div class="p-1 mt-6 ml-8">
+            <button type="button"  class="btn btn-elevate btn-light pb-3 pt-3 pl-10 pr-10 mr-10 text-dark" (click)="delete()"> Yes</button>
+            <button type="button" class="btn btn-primary btn-elevate pb-3 pt-3 pl-10 pr-10 mr-4" (click)="modal.dismiss()">No</button>
+          </div>
+      </div>
+   </div>
+  </div>
