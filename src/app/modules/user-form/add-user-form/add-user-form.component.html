@@ -1,5 +1,6 @@
 <div class=" userForm">
-    <h1 class="addform">ADD NEW USER FORM</h1>
+    <h1 class="addform" *ngIf="!userFormValues">ADD NEW USER FORM</h1>
+    <h1 class="addform" *ngIf="userFormValues">EDIT USER FORM</h1>
 </div>
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 <div class="row align-items-start userForm">
