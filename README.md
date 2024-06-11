@@ -6,7 +6,10 @@ Please follow below instruction to run the fron-end UI ::
 3.nvm use 10
 4.npm start
 5.check for url with  http://localhost:4200/users/userList 
+## Latrest changes
+added paginantion to download the specific user list form page numbers added in list below 
 
+![image](https://github.com/SandeepMerutha96/document-dasboard-app/assets/153068634/486af571-d4a7-40d6-bad7-3e0d93683eec)
 
 APP-Side Feature ::
 
