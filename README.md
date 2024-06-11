@@ -1,3 +1,16 @@
+Please follow below instruction to run the fron-end UI 
+1.npm install
+2.nvm install 10 
+3.nvm use 10
+4.npm start
+5.check for url with  http://localhost:4200/users/userList 
+APP-Side Feature
+1.Add new user  
+2.Edit User
+3.Delete User
+4.Download page List Pdf
+5.Downloaded list PDF to view in app needs to be implemented.
+
 # DocumentDasboardApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.2.
