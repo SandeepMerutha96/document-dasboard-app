@@ -1,0 +1,68 @@
+.paginantion.active{
+    background-color:#014017 !important;
+    color:#32e875 !important;
+    border-radius: 50% !important;
+}
+/* Main container styling */
+.fwt-shop-pagination {
+    padding: 10px 0;
+}
+
+/* List container styling */
+.pagination-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Individual page item styling */
+.page-item {
+    cursor: pointer;
+    margin: 0 5px; /* Adjust the margin to control the spacing */
+    font-size: 16px;
+    color: #007bff; /* Change the color to your preference */
+    transition: color 0.3s;
+}
+
+.page-item:hover {
+    color: #0056b3; /* Change the color on hover to your preference */
+}
+
+/* Styling for the active page */
+.page-item .pagination-link.active {
+    font-weight: bold;
+    color: #ff0000; /* Change to the color you want for the active page */
+    border-bottom: 2px solid #ff0000; /* Optional: Add a border to indicate active page */
+}
+
+/* Styling for "previous" and "next" items */
+.page-item.pe-sm-5,
+.page-item.ps-sm-5 {
+    padding: 0 10px;
+}
+
+.page-item .pagination-link {
+    text-decoration: none;
+    color: inherit; /* Inherit color from the parent element */
+}
+
+.page-item .pagination-link:hover {
+    color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .fwt-shop-pagination {
+        display: block;
+    }
+    .pagination-list {
+        flex-direction: row; /* Already flex-direction row by default, this is just for clarity */
+        flex-wrap: wrap; /* Allows wrapping in smaller screens */
+    }
+    .page-item {
+        margin: 5px;
+    }
+}

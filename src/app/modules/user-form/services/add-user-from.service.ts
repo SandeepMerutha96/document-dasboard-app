@@ -2,7 +2,7 @@ import { Inject, Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { UserFormRequestModel, UserFormsList } from '../model/add-user-form.model';
+import { UserFormRequestModel, UserFormsList, UserListRsponse, UserlistResponseModel } from '../model/add-user-form.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class AddUserFormService {
 
   saveUserForm(userformRequestModel: UserFormRequestModel) {
     return this.http.post<UserFormRequestModel>(
-      `${this.baseUrl}`,
+      `${this.baseUrl}/newUser`,
       userformRequestModel
     );
   }
@@ -28,8 +28,8 @@ export class AddUserFormService {
       return this.http.get<UserFormRequestModel>(`${this.baseUrl}/${id}`);
   }
 
-    getUsersList(): Observable<any> {
-      return this.http.get<UserFormsList[]>(`${this.baseUrl}`);
+    getUsersList(userrRequestModel:UserlistResponseModel): Observable<UserListRsponse> {
+      return this.http.post<UserListRsponse>(`${this.baseUrl}`,userrRequestModel);
   }
 
   // masters() {

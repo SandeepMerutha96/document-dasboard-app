@@ -7,8 +7,9 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./modules/user-form/add-user-form.module').then((m) => m.AddUserFormModule),
   },
-
+  // { path: '', redirectTo: 'users' },
   { path: '**', redirectTo: 'error/404' },
+ 
 ];
 
 @NgModule({

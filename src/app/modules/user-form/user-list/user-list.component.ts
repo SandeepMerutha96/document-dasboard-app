@@ -1,8 +1,12 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AddUserFormService } from '../services/add-user-from.service';
-import { UserFormsList } from '../model/add-user-form.model';
+import {
+  UserFormsList,
+  UserListRsponse,
+  UserlistResponseModel,
+} from '../model/add-user-form.model';
 import { Router } from '@angular/router';
-import {  ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteUserFormComponent } from '../delete-user-form/delete-user-form.component';
 import jsPDF from 'jspdf';
@@ -10,26 +14,49 @@ import html2canvas from 'html2canvas';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit {
-userList!:UserFormsList[];
-  constructor(private userFormService:AddUserFormService, private router: Router,  private modalService: NgbModal,private cd: ChangeDetectorRef,   ) { }
+  userList!: UserListRsponse;
+  totalPages: number = 1;
+  currentPage: number = 1;
+  userListModel: UserlistResponseModel = {
+    page: 1,
+    limit: 5,
+  };
+
+  constructor(
+    private userFormService: AddUserFormService,
+    private router: Router,
+    private modalService: NgbModal,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.getUsersList();
-  }
-  addUserForm(){
-     this.router.navigate(['/users/userform'])
+    // this.getPageCount();
   }
 
-  getUsersList(){
-    this.userFormService.getUsersList().subscribe((resp: UserFormsList[])=>{
-      this.userList = resp;
-    })
+  addUserForm() {
+    this.router.navigate(['/users/userform']);
   }
+
+  getUsersList() {
+    this.userFormService
+      .getUsersList(this.userListModel)
+      .subscribe((resp: UserListRsponse) => {
+        this.userList = resp;
+        this.totalPages = this.getPageCount();
+        this.cd.detectChanges();
+      });
+  }
+
+  getPageCount() {
+     return this.totalPages = Math.ceil(this.userList?.total / this.userListModel.limit);
+  }
+
   delete(item: any) {
-    console.log("Delete called");
+    console.log('Delete called');
     const modalRef = this.modalService.open(DeleteUserFormComponent, {
       centered: true,
       // size: "confirm-size",
@@ -38,27 +65,23 @@ userList!:UserFormsList[];
     modalRef.componentInstance.item = item;
     modalRef.result.then(
       () => {
- 
-        return  this.getUsersList();
+        return this.getUsersList();
       },
       () => {
- 
-        return  this.getUsersList();
-      },
+        return this.getUsersList();
+      }
     );
-
     this.cd.detectChanges();
   }
 
-
   generatePDF(): void {
     const data = document.getElementById('data-table');
-    
+
     if (data) {
-      html2canvas(data).then(canvas => {
+      html2canvas(data).then((canvas) => {
         const imgWidth = 210; // Width in mm for an A4 paper
         const pageHeight = 295; // Height in mm for an A4 paper
-        const imgHeight = canvas.height * imgWidth / canvas.width;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
         const heightLeft = imgHeight;
 
         const contentDataURL = canvas.toDataURL('image/png');
@@ -71,4 +94,11 @@ userList!:UserFormsList[];
     }
   }
 
+  onPageChange(page: number) {
+    this.userListModel.page = page;
+    // this.reviewsService.all(this.reviewsModelObject).subscribe((resp) => {
+    //   this.reviewsList = resp;
+    // });
+    this.getUsersList();
+  }
 }

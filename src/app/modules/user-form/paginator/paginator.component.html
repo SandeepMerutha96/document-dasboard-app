@@ -1,0 +1,10 @@
+<div class="fwt-shop-pagination d-sm-block d-none">
+    <ul class="pagination-list d-flex align-items-center justify-content-center">
+        <li class="page-item pe-sm-5 pe-2" (click)="prevPage()"> << previous</li>
+        <li *ngFor="let page of pages" (click)="goToPage(page)" [class.active]="currentPage === page" class="page-item">
+            <p class="pagination-link" [class.active]="currentPage === page">{{ page }}</p>
+        </li>
+        <li class="page-item ps-sm-5 pe-2" (click)="nextPage()">next >></li>
+    </ul>
+</div>
+
