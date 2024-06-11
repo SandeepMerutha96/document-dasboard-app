@@ -1,10 +1,16 @@
-Please follow below instruction to run the fron-end UI 
+Please follow below instruction to run the fron-end UI ::
+
+
 1.npm install
 2.nvm install 10 
 3.nvm use 10
 4.npm start
 5.check for url with  http://localhost:4200/users/userList 
-APP-Side Feature
+
+
+APP-Side Feature ::
+
+
 1.Add new user  
 2.Edit User
 3.Delete User
